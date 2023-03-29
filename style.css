@@ -107,3 +107,22 @@ p span {
 #buyFarm img {
     height: 50px;
 }
+
+.save {
+    display: flex;
+}
+
+.save button {
+    margin: 50px 75px;
+    cursor: pointer;
+}
+
+#saveBtn {
+    background-color: green;
+    color: #d3e3e0;
+}
+
+#resetBtn {
+    background-color: red;
+    color: #d3e3e0;
+}
