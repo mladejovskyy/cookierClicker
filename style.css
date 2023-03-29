@@ -1,6 +1,6 @@
 body {
     background-color: #3b3b3b;
-
+    background-image: url(images/wp7667538.webp);
 }
 
 * {
@@ -37,7 +37,6 @@ body {
 
 .left,
 .right {
-    border: 1px solid #d3e3e034;
     width: 42%;
     height: 80vh;
     padding: 3%;
