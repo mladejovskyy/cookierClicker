@@ -57,6 +57,10 @@ p span {
     cursor: pointer;
 }
 
+.cookieImage {
+    user-select: none;
+}
+
 .cookieImage button {
     background-color: #ffffff00;
     border: none;
