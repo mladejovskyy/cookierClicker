@@ -17,6 +17,7 @@ const cursorCurrPrice = document.querySelector('#cursorCurrPrice');
 const grandmaCurrPrice = document.querySelector('#grandmaCurrPrice');
 const farmCurrPrice = document.querySelector('#farmCurrPrice');
 
+const saveBtn = document.querySelector('#saveBtn');
 // define changing variables
 let num = 0;
 let click = 1;
@@ -120,7 +121,32 @@ function farm() {
     }
 };
 
+//define local save func
+function save() {
+    localStorage.setItem("num", num);
+    localStorage.setItem("click", click);
+    localStorage.setItem("extraClicks", extraClicks);
+    localStorage.setItem("chooseName", chooseName);
+    localStorage.setItem("currentCursors", currentCursors);
+    localStorage.setItem("currentGrandmas", currentGrandmas);
+    localStorage.setItem("currentFarms", currentFarms);
+    localStorage.setItem("cursorPrice", cursorPrice);
+    localStorage.setItem("grandmaPrice", grandmaPrice);
+    localStorage.setItem("farmPrice", farmPrice);
+};
 
+function onLoad() {
+    num = parseInt(localStorage.getItem("num")) || 0;
+    click = parseInt(localStorage.getItem("click")) || 0;
+    extraClicks = parseInt(localStorage.getItem("extraClicks")) || 0;
+    chooseName = parseInt(localStorage.getItem("chooseName")) || 0;
+    currentCursors = parseInt(localStorage.getItem("currentCursors")) || 0;
+    currentGrandmas = parseInt(localStorage.getItem("currentGrandmas")) || 0;
+    currentFarms = parseInt(localStorage.getItem("currentFarms")) || 0;
+    cursorPrice = parseInt(localStorage.getItem("cursorPrice")) || 0;
+    grandmaPrice = parseInt(localStorage.getItem("grandmaPrice")) || 0;
+    farmPrice = parseInt(localStorage.getItem("farmPrice")) || 0;
+}
 
 // Upgrades click events
 buyCursor.addEventListener('click', () => {
@@ -129,9 +155,12 @@ buyCursor.addEventListener('click', () => {
 
 buyGrandma.addEventListener('click', () => {
     grandma();
-})
+});
 
 buyFarm.addEventListener('click', () => {
     farm();
-})
+});
 
+saveBtn.addEventListener('click', () => {
+    save();
+});
