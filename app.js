@@ -17,6 +17,9 @@ const cursorCurrPrice = document.querySelector('#cursorCurrPrice');
 const grandmaCurrPrice = document.querySelector('#grandmaCurrPrice');
 const farmCurrPrice = document.querySelector('#farmCurrPrice');
 
+const saveBtn = document.querySelector('#saveBtn');
+const resetBtn = document.querySelector('#resetBtn');
+
 // define changing variables
 let num = 0;
 let click = 1;
@@ -119,6 +122,78 @@ function farm() {
         console.log("Not enough clicks")
     }
 };
+// save progress
+saveBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieClickerSave', JSON.stringify({
+        num: num,
+        click: click,
+        extraClicks: extraClicks,
+        chooseName: chooseName,
+        currentClicks: currentClicks,
+        currentCursors: currentCursors,
+        currentGrandmas: currentGrandmas,
+        currentFarms: currentFarms,
+        cursorPrice: cursorPrice,
+        grandmaPrice: grandmaPrice,
+        farmPrice: farmPrice
+    }));
+});
+
+function loadSavedGame() {
+    const savedGame = localStorage.getItem('cookieClickerSave');
+    if (savedGame !== null) {
+        const savedData = JSON.parse(savedGame);
+        num = savedData.num;
+        click = savedData.click;
+        extraClicks = savedData.extraClicks;
+        chooseName = savedData.chooseName;
+        currentClicks = savedData.currentClicks;
+        currentCursors = savedData.currentCursors;
+        currentGrandmas = savedData.currentGrandmas;
+        currentFarms = savedData.currentFarms;
+        cursorPrice = savedData.cursorPrice;
+        grandmaPrice = savedData.grandmaPrice;
+        farmPrice = savedData.farmPrice;
+        name.textContent = chooseName;
+        numCookies.textContent = num;
+        currentClicksCount.textContent = currentClicks;
+        currentCursorsCount.textContent = currentCursors;
+        currentGrandmasCount.textContent = currentGrandmas;
+        currentFarmsCount.textContent = currentFarms;
+        cursorCurrPrice.textContent = cursorPrice;
+        grandmaCurrPrice.textContent = grandmaPrice;
+        farmCurrPrice.textContent = farmPrice;
+    }
+}
+
+loadSavedGame();
+
+//define reset game
+function resetGame() {
+    num = 0;
+    click = 1;
+    extraClicks = 0;
+    chooseName = '';
+    currentClicks = click + extraClicks;
+    currentCursors = 0;
+    currentGrandmas = 0;
+    currentFarms = 0;
+    cursorPrice = 10;
+    grandmaPrice = 70;
+    farmPrice = 130;
+
+    // update the UI to reflect the reset
+    numCookies.textContent = num;
+    name.textContent = 'Undefined';
+    currentClicksCount.textContent = currentClicks;
+    currentCursorsCount.textContent = currentCursors;
+    currentGrandmasCount.textContent = currentGrandmas;
+    currentFarmsCount.textContent = currentFarms;
+    cursorCurrPrice.textContent = cursorPrice;
+    grandmaCurrPrice.textContent = grandmaPrice;
+    farmCurrPrice.textContent = farmPrice;
+}
+
 
 
 // Upgrades click events
@@ -132,4 +207,8 @@ buyGrandma.addEventListener('click', () => {
 
 buyFarm.addEventListener('click', () => {
     farm();
+});
+
+resetBtn.addEventListener('click', () => {
+    resetGame();
 });
