@@ -13,6 +13,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap"
         rel="stylesheet">
+    <link rel="shortcut icon" href="images/PerfectCookie.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -36,6 +37,7 @@
 
                 <div class="info">
                     <div>Current clicks: +<span id="currentClicks">1</span></div>
+                    <div>Income: <span id="income">0</span>/s</div>
                     <div>Cursors bought: <span id="currentCursors">0</span></div>
                     <div>Grandmas bought: <span id="currentGrandmas">0</span></div>
                     <div>Farms bought: <span id="currentFarms">0</span></div>
@@ -61,6 +63,22 @@
                 <div class="farm" id="buyFarm"><img src="images/FarmIconTransparent.webp" alt=""> Farm | Price: <span
                         id="farmCurrPrice">150</span> | Adds: 5 clicks</div>
 
+            </div>
+
+            <div class="passiveUpgrades">
+                <h2>Passive income:</h2>
+                <div class="mine" id="buyMine"><img src="images/MineIconTransparent.webp" alt=""> Mine | Price:
+                    <span id="mineCurrPrice">300</span> | Adds: 3 clicks/s
+                </div>
+
+                <div class="factory" id="buyFactory"><img src="images/FactoryIconTransparent.webp" alt=""> Factory |
+                    Price:
+                    <span id="factoryCurrPrice">600</span> | Adds: 5 clicks/s
+                </div>
+
+                <div class="bank" id="buyBank"><img src="images/BankIconLarge.webp" alt=""> Bank | Price:
+                    <span id="bankCurrPrice">1000</span> | Adds: 10 clicks/s
+                </div>
             </div>
 
             <div class="save">

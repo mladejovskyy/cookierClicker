@@ -66,7 +66,7 @@ p span {
     cursor: pointer;
 }
 
-.cookieImage button:hover {
+.cookieImage button:active {
     transform: scale(0.95);
 }
 
@@ -84,7 +84,8 @@ p span {
     padding: 2%;
 }
 
-.upgrades div {
+.upgrades div,
+.passiveUpgrades div {
     margin-top: 2vh;
     width: 400px;
     height: 80px;
@@ -98,11 +99,18 @@ p span {
     align-items: center;
 }
 
-.upgrades div span {
+.upgrades div:active,
+.passiveUpgrades div:active {
+    transform: scale(0.98);
+}
+
+.upgrades div span,
+.passiveUpgrades div span {
     color: #3b3b3b;
 }
 
-.upgrades div img {
+.upgrades div img,
+.passiveUpgrades div img {
     height: 100%;
     margin-left: 20px;
 }

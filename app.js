@@ -7,15 +7,22 @@ const name = document.querySelector('#innerName');
 const buyCursor = document.querySelector('#buyCursor');
 const buyGrandma = document.querySelector('#buyGrandma')
 const buyFarm = document.querySelector('#buyFarm')
+const buyMine = document.querySelector('#buyMine');
+const buyFactory = document.querySelector('#buyFactory');
+const buyBank = document.querySelector('#buyBank');
 
-const currentClicksCount = document.querySelector('#currentClicks')
-const currentCursorsCount = document.querySelector('#currentCursors')
-const currentGrandmasCount = document.querySelector('#currentGrandmas')
-const currentFarmsCount = document.querySelector('#currentFarms')
+const currentClicksCount = document.querySelector('#currentClicks');
+const currentIncome = document.querySelector('#income');
+const currentCursorsCount = document.querySelector('#currentCursors');
+const currentGrandmasCount = document.querySelector('#currentGrandmas');
+const currentFarmsCount = document.querySelector('#currentFarms');
 
 const cursorCurrPrice = document.querySelector('#cursorCurrPrice');
 const grandmaCurrPrice = document.querySelector('#grandmaCurrPrice');
 const farmCurrPrice = document.querySelector('#farmCurrPrice');
+const mineCurrPrice = document.querySelector('#mineCurrPrice');
+const factoryCurrPrice = document.querySelector('#factoryCurrPrice');
+const bankCurrPrice = document.querySelector('#bankCurrPrice');
 
 const saveBtn = document.querySelector('#saveBtn');
 const resetBtn = document.querySelector('#resetBtn');
@@ -23,21 +30,27 @@ const resetBtn = document.querySelector('#resetBtn');
 // define changing variables
 let num = 0;
 let click = 1;
+let income = 0;
 let extraClicks = 0;
 let chooseName = '';
 //define current variables
 let currentClicks = click + extraClicks;
+//active
 let currentCursors = 0;
 let currentGrandmas = 0;
 let currentFarms = 0;
+//passive
+let currentMine = 0;
+let currentFactory = 0;
+let currentBank = 0;
 //define upgrade prices
 let cursorPrice = 10;
 let grandmaPrice = 70;
 let farmPrice = 130;
-
-
-
-
+//passive
+let minePrice = 300;
+let factoryPrice = 600;
+let bankPrice = 1000;
 
 
 //define bakeryName
@@ -122,6 +135,46 @@ function farm() {
         console.log("Not enough clicks")
     }
 };
+
+//define passive func
+function mine() {
+    if (num >= minePrice) {
+        num -= minePrice;
+        income += 3;
+        currentMine++;
+        minePrice += 100;
+        mineCurrPrice.textContent = minePrice;
+    } else {
+        console.log("Not enough clicks")
+    }
+}
+
+function factory() {
+    if (num >= factoryPrice) {
+        num -= factoryPrice;
+        income += 5;
+        currentFactory++;
+        factoryPrice += 200;
+        factoryCurrPrice.textContent = factoryPrice;
+    } else {
+        console.log("Not enough clicks")
+    }
+}
+
+function bank() {
+    if (num >= bankPrice) {
+        num -= bankPrice;
+        income += 10;
+        currentBank++;
+        bankPrice += 200;
+        bankCurrPrice.textContent = bankPrice;
+    } else {
+        console.log("Not enough clicks")
+    }
+}
+
+
+
 // save progress
 saveBtn.addEventListener('click', () => {
     localStorage.setItem('cookieClickerSave', JSON.stringify({
@@ -212,3 +265,22 @@ buyFarm.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     resetGame();
 });
+
+buyMine.addEventListener('click', () => {
+    mine();
+});
+
+buyFactory.addEventListener('click', () => {
+    factory();
+});
+
+buyBank.addEventListener('click', () => {
+    bank();
+});
+
+setInterval(() => {
+    num += income
+    console.log(num, income);
+    numCookies.textContent = num;
+    currentIncome.textContent = income;
+}, 1000);
